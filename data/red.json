@@ -1,0 +1,14 @@
+{ "meneer": 
+    {
+        "weapon": "tactical",
+        "hp": 100
+}, "nolan": 
+    { 
+    "weapon": "burst",
+    "hp": 200
+}, "mik": 
+    {
+    "weapon": "p90",
+    "hp": 120
+}
+}
