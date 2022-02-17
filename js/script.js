@@ -9,9 +9,9 @@ var divWinSound = document.getElementById("win")
 var divHitSound = document.getElementById('hit')
 var divBmg = document.getElementById('bmg')
 var gambleBtn = document.getElementById("gamble");
-var commonWeapons = ["burst", "inf_rifle", "tactical"]; //5%
+var commonWeapons = ["burst", "inf_rifle", "tactical"]; //10%
 var purpleWeapons = ["bolt", "pump", "p90"]; //25%
-var legendaryWeapons = ["gd_missl", "scar"]; //70%
+var legendaryWeapons = ["gd_missl", "scar"]; //65%
 var enemies = ["meneer", "nolan", "mik"]
 var blueWin = false
 var redWin = false
@@ -20,7 +20,7 @@ var weaponsJSON
 var redJSON
 var maxHpRed
 var newWeapon
-var vBucks
+var vBucks = 0
 
 sound.onclick = function(){
     if(!playSound) { 
@@ -72,6 +72,10 @@ gambleBtn.onclick = function(){
     plotWeapon(weapon)
 }
 
+function plotVBucks(){
+    vBucksTxt.innerHTML = `V-Bucks = ${vBucks}`
+}
+
 function plotWeapon(){
     document.getElementById('img').src = `img/${weapon}.png`;
 }
@@ -89,9 +93,9 @@ function plotHpRed(){
 //kiest een wapen uit
 function predictWeapon(){
     let y = Math.floor(Math.random() * 100) + 1
-    if (y <= 5){
+    if (y <= 10){
         wapen = legendaryWeapons[Math.floor(Math.random() * legendaryWeapons.length)]
-    }   else if (y > 5 && y <= 30){
+    }   else if (y > 10 && y <= 35){
         wapen = purpleWeapons[Math.floor(Math.random() * purpleWeapons.length)]
     }   else {
         wapen = commonWeapons[Math.floor(Math.random() * commonWeapons.length)]
@@ -101,6 +105,7 @@ function predictWeapon(){
 }
 
 battle.onclick = function(){
+    newWeaponBtn.className = "";
     getEnemy()
     calcHP()
     hpRed = maxHpRed
@@ -114,7 +119,7 @@ battle.onclick = function(){
     divHpRed.className = "battle";
     divHpBlue.className = "battle";
     header.style.backgroundImage = 'url("img/bg/bg2.jpg")';
-    accept.className = ""
+    accept.className = "";
 }
 
 shoot.onclick = function(){
@@ -145,6 +150,8 @@ shoot.onclick = function(){
             console.log("win");
             shoot.className = "shoot"
             vBucks += 200
+            console.log(vBucks)
+            plotVBucks()
             blueWin = true
             hpRed = 0
             let dmgRed = hpRedPre - hpRed
@@ -196,6 +203,8 @@ accept.onclick = function(){
     if (vBucks >= 400){
     weapon = newWeapon
     accept.className = ""
+    vBucks -= 400
+    plotVBucks()
     } else alert("Te weinig V-Bucks")
 }
 
@@ -218,7 +227,7 @@ function dmgCalc(){
     let dmg = 0
     console.log(weapon)
     console.log(weaponsJSON[weapon])
-    for(i = 0; i <= weaponsJSON[weapon].shots; i++) {
+    for(i = 1; i <= weaponsJSON[weapon].shots; i++) {
         var y = Math.floor(Math.random() * 100) + 1
         if (y <= weaponsJSON[weapon].accuracy){
             dmg += weaponsJSON[weapon].damage
@@ -230,7 +239,7 @@ function dmgRedCalc(){
     let dmg = 0
     console.log("hallo")
     console.log(weaponsJSON[redJSON[enemy].weapon])
-    for(i = 0; i <= weaponsJSON[redJSON[enemy].weapon].shots; i++) {
+    for(i = 1; i <= weaponsJSON[redJSON[enemy].weapon].shots; i++) {
         var y = Math.floor(Math.random() * 100) + 1
         if (y <= weaponsJSON[redJSON[enemy].weapon].accuracy){
             dmg += weaponsJSON[redJSON[enemy].weapon].damage
