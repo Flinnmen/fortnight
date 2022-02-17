@@ -5,10 +5,10 @@
 }, "nolan": 
     { 
     "weapon": "burst",
-    "hp": 200
+    "hp": 150
 }, "mik": 
     {
     "weapon": "p90",
-    "hp": 120
+    "hp": 80
 }
 }
