@@ -162,17 +162,6 @@ body {
     -webkit-text-stroke-color: #fff;
 }
 
-#vBucksTxt{
-    position: absolute;
-    right: 30px;
-    top: 50px;
-    font-size: 6vw;
-    font-weight: bold;
-    color: #000;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: #fff;
-}
-
 #hpBlue.battle{
     position: absolute;
     visibility: visible;

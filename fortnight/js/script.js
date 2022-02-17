@@ -20,7 +20,6 @@ var weaponsJSON
 var redJSON
 var maxHpRed
 var newWeapon
-var vBucks
 
 sound.onclick = function(){
     if(!playSound) { 
@@ -144,7 +143,6 @@ shoot.onclick = function(){
         } else if(hpRed <= 0) {
             console.log("win");
             shoot.className = "shoot"
-            vBucks += 200
             blueWin = true
             hpRed = 0
             let dmgRed = hpRedPre - hpRed
@@ -193,10 +191,8 @@ newWeaponBtn.onclick = function(){
 }
 
 accept.onclick = function(){
-    if (vBucks >= 400){
     weapon = newWeapon
     accept.className = ""
-    } else alert("Te weinig V-Bucks")
 }
 
 function battleOver(){
