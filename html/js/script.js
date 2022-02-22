@@ -21,6 +21,7 @@ var redJSON
 var maxHpRed
 var newWeapon
 var vBucks = 0
+battle.className = "battle"
 
 sound.onclick = function(){
     if(!playSound) { 
@@ -70,6 +71,7 @@ hpBlue = 100
 gambleBtn.onclick = function(){
     weapon = predictWeapon();
     plotWeapon(weapon)
+    battle.className = ""
 }
 
 function plotVBucks(){
